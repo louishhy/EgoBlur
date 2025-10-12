@@ -1,0 +1,82 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "egoblur"
+version = "0.1.0"
+description = "EgoBlur: Responsible Innovation in Aria - Face and License Plate Anonymization"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Meta Platforms, Inc. and affiliates"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24.3",
+    "opencv-python-headless>=4.7.0.72",
+    "moviepy>=1.0.3",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+]
+
+[project.optional-dependencies]
+cpu = [
+    "torch",
+    "torchvision",
+]
+cuda118 = [
+    "torch; platform_machine=='x86_64'",
+    "torchvision; platform_machine=='x86_64'",
+]
+cuda121 = [
+    "torch; platform_machine=='x86_64'",
+    "torchvision; platform_machine=='x86_64'",
+]
+cuda124 = [
+    "torch; platform_machine=='x86_64'",
+    "torchvision; platform_machine=='x86_64'",
+]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+]
+all-cuda = [
+    "egoblur[cuda118,cuda121,cuda124]",
+]
+
+[project.urls]
+Homepage = "https://github.com/facebookresearch/EgoBlur"
+Repository = "https://github.com/facebookresearch/EgoBlur"
+Documentation = "https://www.projectaria.com/tools/egoblur"
+
+[project.scripts]
+egoblur-demo = "egoblur.demo:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["script"]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

@@ -13,7 +13,7 @@ import cv2
 import numpy as np
 import torch
 import torchvision
-from moviepy.editor import ImageSequenceClip
+from moviepy import ImageSequenceClip
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
 
