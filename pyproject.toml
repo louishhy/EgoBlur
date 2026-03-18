@@ -22,38 +22,25 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "numpy>=1.24.3",
+    "numpy>=1.24.3,<2",
     "opencv-python-headless>=4.7.0.72",
     "moviepy>=1.0.3",
-    "torch>=2.0.0",
-    "torchvision>=0.15.0",
 ]
 
 [project.optional-dependencies]
 cpu = [
-    "torch",
-    "torchvision",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
 ]
-cuda118 = [
-    "torch; platform_machine=='x86_64'",
-    "torchvision; platform_machine=='x86_64'",
-]
-cuda121 = [
-    "torch; platform_machine=='x86_64'",
-    "torchvision; platform_machine=='x86_64'",
-]
-cuda124 = [
-    "torch; platform_machine=='x86_64'",
-    "torchvision; platform_machine=='x86_64'",
+cuda117 = [
+    "torch==2.0.0+cu117; platform_machine=='x86_64'",
+    "torchvision==0.15.0+cu117; platform_machine=='x86_64'",
 ]
 dev = [
     "pytest>=7.0.0",
     "black>=23.0.0",
     "isort>=5.12.0",
     "flake8>=6.0.0",
-]
-all-cuda = [
-    "egoblur[cuda118,cuda121,cuda124]",
 ]
 
 [project.urls]
@@ -80,3 +67,7 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
+
+[tool.uv]
+index-url = "https://pypi.org/simple"
+extra-index-url = ["https://download.pytorch.org/whl/cu117"]

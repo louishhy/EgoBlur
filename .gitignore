@@ -85,3 +85,5 @@ ego_blur_assets/
 models/
 *.jit
 *.zip
+
+local_*.sh
